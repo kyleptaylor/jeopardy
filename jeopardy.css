@@ -1,0 +1,158 @@
+/* some colors you may find useful:
+  #115ff4 - Light blue
+  #060ce9 - Dark blue
+  #28a200 - Green
+  #8d2ab5 - Pink
+  #74119c - Purple
+*/
+
+* {
+  transition: all 0.3s ease;
+}
+
+body {
+  background-color: #115ff4;
+  margin: 0;
+  height: 100vh;
+}
+
+#main-section {
+  background-image: url("https://www.jeopardy.com/sites/default/files/social_meta/background.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 0;
+}
+
+#header-box {
+  padding: 30px 50px 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 2;
+}
+
+h1 {
+  color: #ffffff;
+  font-family: "Anton", sans-serif;
+  font-size: 3em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  display: inline;
+}
+
+h2 {
+  padding-top: 10px;
+  color: #8d2ab5;
+  font-family: "Anton", sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 5px #ffffff;
+}
+
+#start {
+  padding: 20px 50px;
+  background-color: #28a200;
+  font-family: "Anton", sans-serif;
+  outline: none;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+#start:hover {
+  border-color: #060ce9;
+}
+
+#spin-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fa-spinner {
+  font-size: 10em;
+  color: #8d2ab5;
+  text-shadow: 0 0 5px #ffffff;
+}
+
+#alex {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  z-index: -1;
+}
+
+#jeopardy-table {
+  max-width: 1200px;
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  table-layout: fixed;
+  width: 100%;
+  margin: 20px auto;
+  border-spacing: 8px;
+}
+
+.title {
+  height: 50px;
+  padding: 10px;
+  background-color: #060ce9;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  font-family: "Anton", sans-serif;
+  font-size: 1.5em;
+}
+
+.cell {
+  text-align: center;
+  height: 65px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  color: #ffd700;
+  cursor: pointer;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 0.9em;
+}
+
+.cell:hover {
+  border-color: #060ce9;
+}
+
+.icon {
+  pointer-events: none;
+}
+
+.fa-question {
+  font-size: 2.5em;
+}
+
+.question {
+  cursor: pointer;
+  background-color: #8d2ab5;
+  color: #ffffff;
+}
+
+.answer {
+  cursor: not-allowed;
+  background-color: #28a200;
+  color: #ffffff;
+}
