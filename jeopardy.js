@@ -30,18 +30,23 @@ let apiCats = "https://rithm-jeopardy.herokuapp.com/api/categories?count=100";
  */
 
 async function getCategoryIds() {
-  const response = await axios.get(apiCats);
-  allCategories = response.data;
+  try {
+    const response = await axios.get(apiCats);
+    allCategories = response.data;
 
-  // Shuffle the categories array to randomize the order
-  const shuffledCategories = allCategories.sort(() => Math.random() - 0.5);
+    // Shuffle the categories array to randomize the order
+    const shuffledCategories = allCategories.sort(() => Math.random() - 0.5);
 
-  // Select the first 6 categories after shuffling
-  const selectedCategories = shuffledCategories.slice(0, numCategories);
+    // Select the first 6 categories after shuffling
+    const selectedCategories = shuffledCategories.slice(0, numCategories);
 
-  // Extract the IDs of the selected categories
-  const catIds = selectedCategories.map((cat) => cat.id);
-  getCategory(catIds);
+    // Extract the IDs of the selected categories
+    const catIds = selectedCategories.map((cat) => cat.id);
+    getCategory(catIds);
+  } catch (error) {
+    hideLoadingView();
+    console.error("Error while fetching category IDs:", error);
+  }
 }
 
 /** Return object with data about a category:
@@ -58,23 +63,30 @@ async function getCategoryIds() {
 
 async function getCategory(catIds) {
   categories = [];
-  for (const cat of catIds) {
-    const response = await axios.get(api, { params: { id: cat } });
-    data = response.data;
+  try {
+    for (const cat of catIds) {
+      const response = await axios.get(api, { params: { id: cat } });
+      data = response.data;
 
-    // Create categoryObj to push to the catrgories object
-    const categoryObj = {
-      title: data.title,
-      clues: data.clues.map((clue) => ({
-        question: clue.question,
-        answer: clue.answer,
-        showing: null,
-      })),
-    };
-    categories.push(categoryObj);
+      // Create categoryObj to push to the catrgories object
+      const categoryObj = {
+        title: data.title,
+        clues: data.clues.map((clue) => ({
+          question: clue.question,
+          answer: clue.answer,
+          showing: null,
+        })),
+      };
+      categories.push(categoryObj);
+    }
+    await fillTable();
+  } catch (error) {
+    hideLoadingView();
+    console.error(
+      "Error while fetching this category from category IDs:",
+      error
+    );
   }
-
-  await fillTable();
 }
 
 /** Fill the HTML table#jeopardy with the categories & cells for questions.
@@ -180,5 +192,3 @@ $(document).ready(function () {
 });
 
 /** On click of start / restart button, set up game. */
-
-// TODO
